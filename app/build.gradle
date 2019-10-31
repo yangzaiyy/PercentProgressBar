@@ -15,10 +15,41 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'View'
+            keyPassword '111111'
+            storeFile file('/Applications/View/keystore.jks')
+            storePassword '111111'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.config
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            multiDexEnabled true
+            signingConfig signingConfigs.config
+        }
+    }
+
+    //3.0版本Gradle开始必须添加纬度
+    flavorDimensions "default"
+
+    build {
+        productFlavors {
+            baidu {}
+            xiaomi {}
+            qihu360 {}
+            yingyongbao {}
+            huawei {}
+        }
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL:name]
         }
     }
 }

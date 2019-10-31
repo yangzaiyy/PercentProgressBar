@@ -85,6 +85,7 @@ class ProgressBarView @JvmOverloads constructor(context: Context, attrs: Attribu
         mProgressPaint = Paint()
         mProgressPaint!!.style = Paint.Style.FILL
         mProgressPaint!!.isAntiAlias = true
+
         mProgressPaint!!.strokeWidth = mProgressBarHeight.toFloat()
 
         mTextPaint = Paint()
